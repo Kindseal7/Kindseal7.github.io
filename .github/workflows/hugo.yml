@@ -30,7 +30,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.140.0        # 固定版本，避免 Hugo 大版本升级破坏站点
+      HUGO_VERSION: 0.150.0        # 固定版本，避免 Hugo 大版本升级破坏站点
     steps:
       - name: 安装 Hugo CLI (extended)
         run: |
