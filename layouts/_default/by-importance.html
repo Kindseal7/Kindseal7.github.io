@@ -1,0 +1,53 @@
+{{- define "main" -}}
+
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Content }}
+  <div class="post-description">
+    {{ .Content }}
+  </div>
+  {{- end }}
+</header>
+
+{{- /*
+  取 posts 下全部文章，按 weight 升序排列。
+  Hugo 里 weight = 0（未设置）会被 ByWeight 排到最后，行为符合预期。
+*/ -}}
+{{- $posts := where .Site.RegularPages "Section" "posts" -}}
+
+{{- range $posts.ByWeight }}
+<article class="post-entry">
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+      {{ .Title }}
+      {{- if .Params.weight }}
+      <span class="entry-hint" title="重要性权重（越小越重要）">
+        · weight {{ .Params.weight }}
+      </span>
+      {{- end }}
+    </h2>
+  </header>
+
+  {{- if .Params.subtitle }}
+  <div class="entry-content">
+    <p>{{ .Params.subtitle }}</p>
+  </div>
+  {{- end }}
+
+  <footer class="entry-footer">
+    <span title='{{ .Date.Format "2006-01-02 15:04:05" }}'>
+      {{ .Date.Format "2006-01-02" }}
+    </span>
+    {{- with .Params.tags }}
+    &nbsp;·&nbsp;
+    {{- range . }}
+    <a href="{{ "tags/" | absURL }}{{ . | urlize }}/">#{{ . }}</a>&nbsp;
+    {{- end }}
+    {{- end }}
+  </footer>
+
+  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+
+{{- end }}{{/* end main */}}

@@ -1,0 +1,43 @@
+/* ============================================================================
+   自定义样式覆盖 —— 改颜色、字体、间距都在这个文件
+   PaperMod 主题的样式通过 CSS 变量定义，这里可以直接覆盖
+   ============================================================================ */
+
+/* ---- 主题色（链接、按钮的强调色） ---- */
+:root {
+  --primary: rgb(30, 30, 30);       /* 亮色模式：主文字色 */
+  --secondary: rgb(108, 108, 108);  /* 亮色模式：次要文字色 */
+}
+
+.dark {
+  --primary: rgb(218, 218, 219);    /* 暗色模式：主文字色 */
+  --secondary: rgb(155, 156, 157);  /* 暗色模式：次要文字色 */
+}
+
+/* ---- 正文字体：优先使用系统中文字体 ---- */
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont,
+    "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---- 代码字体 ---- */
+code, pre, kbd {
+  font-family:
+    "JetBrains Mono", "Fira Code", Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+/* ---- 文章正文行距：中文阅读稍微舒展一点 ---- */
+.post-content {
+  line-height: 1.75;
+}
+
+/* ---- 让"按重要性"页的 weight 徽章更柔和 ---- */
+.entry-hint {
+  font-size: 0.75rem;
+  color: var(--secondary);
+  font-weight: normal;
+  margin-left: 0.5em;
+}

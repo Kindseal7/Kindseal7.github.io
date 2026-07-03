@@ -1,0 +1,121 @@
+# ============================================================================
+# Hugo 站点主配置 —— 改标题、副标题、菜单、颜色都在这个文件
+# 修改后：本地 `hugo server` 立即生效；线上 push 后约 1 分钟自动更新
+# ============================================================================
+
+# 你的网站首页地址
+baseURL = "https://kindseal7.github.io/"
+
+# 站点主标题（浏览器标签、页头都会显示）
+title = "我的自留地"
+
+# 主题（不用改）
+theme = "PaperMod"
+
+# 默认语言（中文）
+defaultContentLanguage = "zh-cn"
+hasCJKLanguage = true          # 中日韩字符正确统计字数
+enableRobotsTXT = true
+buildDrafts = false            # 不构建草稿
+buildFuture = false            # 不构建未来日期的文章
+enableEmoji = true
+
+# 首页 / 标签页 / 分类页每页显示多少篇
+[pagination]
+  pagerSize = 10
+
+# ---- 输出格式（启用搜索所需） ----
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# ============================================================================
+# PaperMod 主题参数（大部分外观都在这里）
+# ============================================================================
+[params]
+  # 副标题：显示在首页主标题下方
+  description = "读书、思考、代码 —— 一点一滴的记录"
+
+  # 深浅色主题：auto=跟随系统 / light=只亮 / dark=只暗
+  defaultTheme = "auto"
+  disableThemeToggle = false      # 右上角显示日/月切换按钮
+
+  ShowReadingTime = true          # 显示阅读时长
+  ShowShareButtons = false        # 关闭底部分享按钮
+  ShowPostNavLinks = true         # 上一篇/下一篇导航
+  ShowBreadCrumbs = true          # 面包屑
+  ShowCodeCopyButtons = true      # 代码块右上角复制按钮
+  ShowWordCount = true            # 显示字数
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true               # 使用 Hugo 原生 TOC
+  ShowToc = true                  # 文章目录（右侧）
+  TocOpen = false                 # 默认收起
+
+  # ---- 首页个人档区 ----
+  # 首页顶部展示，取消注释即可启用；如不想要就删掉整段
+  [params.homeInfoParams]
+    Title = "你好 👋"
+    Content = "欢迎来到我的自留地。这里放一些读书笔记、思考随笔和代码相关的记录。"
+
+  # ---- 搜索（Fuse.js 客户端搜索） ----
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+  # ---- 文章封面图（PaperMod 自动识别 front matter 里的 cover 字段） ----
+  [params.cover]
+    responsiveImages = true
+    linkFullImages = true
+
+# ============================================================================
+# 顶部菜单栏（这里决定网站有哪些入口）
+# ============================================================================
+[[menu.main]]
+  identifier = "by-date"
+  name = "按时间"
+  url = "/by-date/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "by-importance"
+  name = "按重要性"
+  url = "/by-importance/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "tags"
+  name = "标签"
+  url = "/tags/"
+  weight = 30
+
+[[menu.main]]
+  identifier = "search"
+  name = "搜索"
+  url = "/search/"
+  weight = 40
+
+# ============================================================================
+# Markdown 渲染选项
+# ============================================================================
+[markup]
+  [markup.highlight]
+    style = "github"              # 代码高亮主题
+    lineNos = false
+    codeFences = true
+    noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = true                 # 允许 Markdown 里写 HTML（如插入 <img width>）
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false
+
+# ============================================================================
+# 分类法：标签
+# ============================================================================
+[taxonomies]
+  tag = "tags"
